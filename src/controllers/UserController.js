@@ -41,7 +41,7 @@ module.exports = {
 
   updateUser(request, response){
     let { id } = request.params;
-    const name = request.body
+    const { name } = request.body
 
     id = Number(id);
 
@@ -62,5 +62,14 @@ module.exports = {
     });
 
     response.send(200, { id, name })
+  },
+
+  deleteUser (request, response) {
+    let { id } = request.params;
+    id = Number(id);
+
+    users = users.filter((user) => user.id !== id);
+
+    response.send(200, { deleted: true });
   },
 };
